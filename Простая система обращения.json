@@ -1,0 +1,601 @@
+{
+  "name": "Простая система обращения",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5bbe1313-1755-4ba8-8052-35532cc20ed3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -592,
+        -304
+      ],
+      "id": "aec98d8b-c090-43f2-855b-2dd57886e0ca",
+      "name": "Webhook",
+      "webhookId": "5bbe1313-1755-4ba8-8052-35532cc20ed3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a8a17675-bcd5-4662-ae63-00c06a4a4235",
+              "name": "body.name",
+              "value": "={{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "c4329e47-e416-4cd3-8faf-5a33495249af",
+              "name": "body.email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "915d6132-b0e2-47f9-9043-0402c75ca483",
+              "name": "body.message",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            },
+            {
+              "id": "4a2ba9c8-c359-48c9-bc86-aae57ecc5d1c",
+              "name": "body.message_receipt",
+              "value": "={{ $json.body.message_receipt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -384,
+        -304
+      ],
+      "id": "5d6e8f20-351a-4cc4-9a98-30130a07b22e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1GIs4_XssmEPwc8bxwYkpHvzrr_jExCkrIeRU_GT4Pvo",
+          "mode": "list",
+          "cachedResultName": "Сбор обращений",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GIs4_XssmEPwc8bxwYkpHvzrr_jExCkrIeRU_GT4Pvo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Лист1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GIs4_XssmEPwc8bxwYkpHvzrr_jExCkrIeRU_GT4Pvo/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.body.name }}",
+            "Email": "={{ $json.body.email }}",
+            "Message": "={{ $json.body.message }}",
+            "Message Receipt": "={{ $json.body.message_receipt }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Message Receipt",
+              "displayName": "Message Receipt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -176,
+        -304
+      ],
+      "id": "e8f76bd6-a82a-428f-bf08-7487a5307b28",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0nozAKeeq5hfTEcj",
+          "name": "Google Sheets account 8062146"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## V1.0 \nVersion without Airtable's rows"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -848,
+        -320
+      ],
+      "typeVersion": 1,
+      "id": "1007272c-fc59-4ef0-8d54-caedeec8caa3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dd53c14c-36ef-4f34-9cab-4824d5d0f10c",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -592,
+        288
+      ],
+      "id": "8cbbaad2-fd32-44ec-b2c5-024d4bc05f5e",
+      "name": "Webhook1",
+      "webhookId": "dd53c14c-36ef-4f34-9cab-4824d5d0f10c"
+    },
+    {
+      "parameters": {
+        "content": "\nV2.0\n\nVersion with Airtable"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -848,
+        256
+      ],
+      "typeVersion": 1,
+      "id": "3002c60a-d8af-4e61-ac78-6a3d63fd1b6e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app5pxdHV8cRdCcEt",
+          "mode": "list",
+          "cachedResultName": "Management",
+          "cachedResultUrl": "https://airtable.com/app5pxdHV8cRdCcEt"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblSA5241CmdEsGhl",
+          "mode": "list",
+          "cachedResultName": "Managers",
+          "cachedResultUrl": "https://airtable.com/app5pxdHV8cRdCcEt/tblSA5241CmdEsGhl"
+        },
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "Current Load"
+            },
+            {
+              "field": "City"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -256,
+        176
+      ],
+      "id": "274ba386-b562-48c6-92d5-82808d59fc74",
+      "name": "Search records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ITj2nQm662nClDb9",
+          "name": "Airtable Personal Access Token account 327"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "app5pxdHV8cRdCcEt",
+          "mode": "list",
+          "cachedResultName": "Management",
+          "cachedResultUrl": "https://airtable.com/app5pxdHV8cRdCcEt"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl3hMZx2tK3cIHwb",
+          "mode": "list",
+          "cachedResultName": "Applications",
+          "cachedResultUrl": "https://airtable.com/app5pxdHV8cRdCcEt/tbl3hMZx2tK3cIHwb"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Client Name": "={{ $json.body.cleintName }}",
+            "Client City": "={{ $json.body.clientCity }}",
+            "Status": "={{ $json.body.clientStatus }}",
+            "Manager": "={{ [$json.id] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Client Name",
+              "displayName": "Client Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Client City",
+              "displayName": "Client City",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Manager",
+              "displayName": "Manager",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        288,
+        272
+      ],
+      "id": "cae5c16d-19f8-44eb-9095-8a0070568871",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ITj2nQm662nClDb9",
+          "name": "Airtable Personal Access Token account 327"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a302e5d5-5c5a-4c22-8d33-110aefa78ced",
+              "name": "body.cleintName",
+              "value": "={{ $json.body.cleintName }}",
+              "type": "string"
+            },
+            {
+              "id": "305a8d26-65eb-40aa-8ce5-b6d15e7019ca",
+              "name": "body.clientCity",
+              "value": "={{ $json.body.clientCity }}",
+              "type": "string"
+            },
+            {
+              "id": "fba98277-96d6-49b6-af73-8c6d72b7aa1e",
+              "name": "body.clientStatus",
+              "value": "={{ $json.body.clientStatus }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -432,
+        288
+      ],
+      "id": "a5ca332d-a903-4e44-8685-832d956982bc",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        176
+      ],
+      "id": "d2793e04-57df-4fc8-ae78-9641e157dc70",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        96,
+        272
+      ],
+      "id": "a7911dd2-24e6-4f58-b1f7-71e256b522fb",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "app5pxdHV8cRdCcEt",
+          "mode": "list",
+          "cachedResultName": "Management",
+          "cachedResultUrl": "https://airtable.com/app5pxdHV8cRdCcEt"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblSA5241CmdEsGhl",
+          "mode": "list",
+          "cachedResultName": "Managers",
+          "cachedResultUrl": "https://airtable.com/app5pxdHV8cRdCcEt/tblSA5241CmdEsGhl"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Limit').item.json.id }}",
+            "Current Load": "={{ $('Limit').item.json.fields[\"Current Load\"] + 1}}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Current Load",
+              "displayName": "Current Load",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Applications",
+              "displayName": "Applications",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        272
+      ],
+      "id": "9e31426f-c195-48f9-bc8b-a7c3e2ada453",
+      "name": "Update record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "ITj2nQm662nClDb9",
+          "name": "Airtable Personal Access Token account 327"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record": {
+      "main": [
+        [
+          {
+            "node": "Update record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "39edfdcb-96a4-4565-b666-66127d0c44e5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f4300700b5a89163b88ad6a908ff9e3076c705e8b03a3f40f03ff2f29f7e4289"
+  },
+  "nodeGroups": [],
+  "id": "A2dN8s7TCTtbKbnh",
+  "tags": []
+}
